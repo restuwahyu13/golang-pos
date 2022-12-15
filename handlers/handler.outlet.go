@@ -7,17 +7,17 @@ import (
 	"github.com/gin-gonic/gin"
 	gpc "github.com/restuwahyu13/go-playground-converter"
 
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/helpers"
 	"github.com/restuwahyu13/golang-pos/pkg"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type handlerOutlet struct {
-	outlet entitys.EntityOutlet
+	outlet entities.EntityOutlet
 }
 
-func NewHandlerOutlet(outlet entitys.EntityOutlet) *handlerOutlet {
+func NewHandlerOutlet(outlet entities.EntityOutlet) *handlerOutlet {
 	return &handlerOutlet{outlet: outlet}
 }
 
@@ -38,7 +38,7 @@ func (h *handlerOutlet) HandlerPing(ctx *gin.Context) {
  */
 
 func (h *handlerOutlet) HandlerCreate(ctx *gin.Context) {
-	var body schemas.SchemaOutlet
+	var body schemes.SchemeOutlet
 	err := ctx.ShouldBindJSON(&body)
 
 	if err != nil {
@@ -97,7 +97,7 @@ func (h *handlerOutlet) HandlerResults(ctx *gin.Context) {
  */
 
 func (h *handlerOutlet) HandlerResult(ctx *gin.Context) {
-	var body schemas.SchemaOutlet
+	var body schemes.SchemeOutlet
 	id := ctx.Param("id")
 	body.ID = id
 
@@ -125,7 +125,7 @@ func (h *handlerOutlet) HandlerResult(ctx *gin.Context) {
  */
 
 func (h *handlerOutlet) HandlerDelete(ctx *gin.Context) {
-	var body schemas.SchemaOutlet
+	var body schemes.SchemeOutlet
 	id := ctx.Param("id")
 	body.ID = id
 
@@ -158,7 +158,7 @@ func (h *handlerOutlet) HandlerDelete(ctx *gin.Context) {
  */
 
 func (h *handlerOutlet) HandlerUpdate(ctx *gin.Context) {
-	var body schemas.SchemaOutlet
+	var body schemes.SchemeOutlet
 	id := ctx.Param("id")
 	body.ID = id
 
@@ -197,7 +197,7 @@ func (h *handlerOutlet) HandlerUpdate(ctx *gin.Context) {
 *=======================================
  */
 
-func ValidatorOutlet(ctx *gin.Context, input schemas.SchemaOutlet, Type string) (interface{}, int) {
+func ValidatorOutlet(ctx *gin.Context, input schemes.SchemeOutlet, Type string) (interface{}, int) {
 	var schema gpc.ErrorConfig
 
 	if Type == "create" {

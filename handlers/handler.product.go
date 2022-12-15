@@ -9,17 +9,17 @@ import (
 	"github.com/gin-gonic/gin"
 	gpc "github.com/restuwahyu13/go-playground-converter"
 
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/helpers"
 	"github.com/restuwahyu13/golang-pos/pkg"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type handleProduct struct {
-	product entitys.EntityProduct
+	product entities.EntityProduct
 }
 
-func NewHandlerProduct(product entitys.EntityProduct) *handleProduct {
+func NewHandlerProduct(product entities.EntityProduct) *handleProduct {
 	return &handleProduct{product: product}
 }
 
@@ -40,7 +40,7 @@ func (h *handleProduct) HandlerPing(ctx *gin.Context) {
  */
 
 func (h *handleProduct) HandlerCreate(ctx *gin.Context) {
-	var body schemas.SchemaProduct
+	var body schemes.SchemeProduct
 	file, _ := ctx.FormFile("image")
 	sku, _ := strconv.ParseUint(ctx.PostForm("sku"), 10, 64)
 	price, _ := strconv.ParseUint(ctx.PostForm("price"), 10, 64)
@@ -106,7 +106,7 @@ func (h *handleProduct) HandlerResults(ctx *gin.Context) {
  */
 
 func (h *handleProduct) HandlerResult(ctx *gin.Context) {
-	var body schemas.SchemaProduct
+	var body schemes.SchemeProduct
 	id := ctx.Param("id")
 	body.ID = id
 
@@ -134,7 +134,7 @@ func (h *handleProduct) HandlerResult(ctx *gin.Context) {
  */
 
 func (h *handleProduct) HandlerDelete(ctx *gin.Context) {
-	var body schemas.SchemaProduct
+	var body schemes.SchemeProduct
 	id := ctx.Param("id")
 	body.ID = id
 
@@ -167,7 +167,7 @@ func (h *handleProduct) HandlerDelete(ctx *gin.Context) {
  */
 
 func (h *handleProduct) HandlerUpdate(ctx *gin.Context) {
-	var body schemas.SchemaProduct
+	var body schemes.SchemeProduct
 	file, _ := ctx.FormFile("logo")
 	sku, _ := strconv.ParseUint(ctx.PostForm("sku"), 10, 64)
 	price, _ := strconv.ParseUint(ctx.PostForm("price"), 10, 64)
@@ -210,7 +210,7 @@ func (h *handleProduct) HandlerUpdate(ctx *gin.Context) {
  */
 
 func (h *handleProduct) HandlerResultByOutlet(ctx *gin.Context) {
-	var body schemas.SchemaProduct
+	var body schemes.SchemeProduct
 	id := ctx.Param("id")
 	body.ID = id
 
@@ -237,7 +237,7 @@ func (h *handleProduct) HandlerResultByOutlet(ctx *gin.Context) {
 *=======================================
  */
 
-func ValidatorProduct(ctx *gin.Context, input schemas.SchemaProduct, Type string) (interface{}, int) {
+func ValidatorProduct(ctx *gin.Context, input schemes.SchemeProduct, Type string) (interface{}, int) {
 	var schema gpc.ErrorConfig
 
 	if Type == "create" {

@@ -13,32 +13,32 @@ import (
 	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
-type handleSupplier struct {
-	supplier entities.EntitySupplier
+type handleCustomer struct {
+	customer entities.EntityCustomer
 }
 
-func NewHandlerSupplier(supplier entities.EntitySupplier) *handleSupplier {
-	return &handleSupplier{supplier: supplier}
+func NewHandlerCustomer(customer entities.EntityCustomer) *handleCustomer {
+	return &handleCustomer{customer: customer}
 }
 
 /**
 * ======================================
-* Handler Ping Status Supplier Teritory
+* Handler Ping Status Customer Teritory
 *=======================================
  */
 
-func (h *handleSupplier) HandlerPing(ctx *gin.Context) {
-	helpers.APIResponse(ctx, "Ping Supplier", http.StatusOK, nil)
+func (h *handleCustomer) HandlerPing(ctx *gin.Context) {
+	helpers.APIResponse(ctx, "Ping Customer", http.StatusOK, nil)
 }
 
 /**
 * =====================================
-* Handler Create New Supplier Teritory
+* Handler Create New Customer Teritory
 *======================================
  */
 
-func (h *handleSupplier) HandlerCreate(ctx *gin.Context) {
-	var body schemes.SchemeSupplier
+func (h *handleCustomer) HandlerCreate(ctx *gin.Context) {
+	var body schemes.SchemeCustomer
 	err := ctx.ShouldBindJSON(&body)
 
 	if err != nil {
@@ -46,114 +46,114 @@ func (h *handleSupplier) HandlerCreate(ctx *gin.Context) {
 		return
 	}
 
-	errors, code := ValidatorSupplier(ctx, body, "create")
+	errors, code := ValidatorCustomer(ctx, body, "create")
 
 	if code > 0 {
 		helpers.ErrorResponse(ctx, errors)
 		return
 	}
 
-	_, error := h.supplier.EntityCreate(&body)
+	_, error := h.customer.EntityCreate(&body)
 
-	if error.Type == "error_create_01" {
-		helpers.APIResponse(ctx, "Supplier name already exist", error.Code, nil)
+	if error.Type == "error_update_01" {
+		helpers.APIResponse(ctx, "Customer name already exist", error.Code, nil)
 		return
 	}
 
 	if error.Type == "error_create_02" {
-		helpers.APIResponse(ctx, "Create new Supplier failed", error.Code, nil)
+		helpers.APIResponse(ctx, "Create new Customer failed", error.Code, nil)
 		return
 	}
 
-	helpers.APIResponse(ctx, "Create new Supplier successfully", http.StatusCreated, nil)
+	helpers.APIResponse(ctx, "Create new Customer successfully", http.StatusCreated, nil)
 }
 
 /**
 * ======================================
-* Handler Results All Supplier Teritory
+* Handler Results All Customer Teritory
 *=======================================
  */
 
-func (h *handleSupplier) HandlerResults(ctx *gin.Context) {
-	res, error := h.supplier.EntityResults()
+func (h *handleCustomer) HandlerResults(ctx *gin.Context) {
+	res, error := h.customer.EntityResults()
 
 	if error.Type == "error_results_01" {
-		helpers.APIResponse(ctx, "Supplier data not found", error.Code, nil)
+		helpers.APIResponse(ctx, "Customer data not found", error.Code, nil)
 		return
 	}
 
-	helpers.APIResponse(ctx, "Supplier data already to use", http.StatusOK, res)
+	helpers.APIResponse(ctx, "Customer data already to use", http.StatusOK, res)
 }
 
 /**
 * ======================================
-* Handler Result Supplier By ID Teritory
+* Handler Result Customer By ID Teritory
 *=======================================
  */
 
-func (h *handleSupplier) HandlerResult(ctx *gin.Context) {
-	var body schemes.SchemeSupplier
+func (h *handleCustomer) HandlerResult(ctx *gin.Context) {
+	var body schemes.SchemeCustomer
 	id := ctx.Param("id")
 	body.ID = id
 
-	errors, code := ValidatorSupplier(ctx, body, "result")
+	errors, code := ValidatorCustomer(ctx, body, "result")
 
 	if code > 0 {
 		helpers.ErrorResponse(ctx, errors)
 		return
 	}
 
-	res, error := h.supplier.EntityResult(&body)
+	res, error := h.customer.EntityResult(&body)
 
 	if error.Type == "error_result_01" {
-		helpers.APIResponse(ctx, fmt.Sprintf("Supplier data not found for this id %s ", id), error.Code, nil)
+		helpers.APIResponse(ctx, fmt.Sprintf("Customer data not found for this id %s ", id), error.Code, nil)
 		return
 	}
 
-	helpers.APIResponse(ctx, "Supplier data already to use", http.StatusOK, res)
+	helpers.APIResponse(ctx, "Customer data already to use", http.StatusOK, res)
 }
 
 /**
 * ======================================
-* Handler Delete Supplier By ID Teritory
+* Handler Delete Customer By ID Teritory
 *=======================================
  */
 
-func (h *handleSupplier) HandlerDelete(ctx *gin.Context) {
-	var body schemes.SchemeSupplier
+func (h *handleCustomer) HandlerDelete(ctx *gin.Context) {
+	var body schemes.SchemeCustomer
 	id := ctx.Param("id")
 	body.ID = id
 
-	errors, code := ValidatorSupplier(ctx, body, "delete")
+	errors, code := ValidatorCustomer(ctx, body, "delete")
 
 	if code > 0 {
 		helpers.ErrorResponse(ctx, errors)
 		return
 	}
 
-	res, error := h.supplier.EntityDelete(&body)
+	res, error := h.customer.EntityDelete(&body)
 
 	if error.Type == "error_delete_01" {
-		helpers.APIResponse(ctx, fmt.Sprintf("Supplier data not found for this id %s ", id), error.Code, nil)
+		helpers.APIResponse(ctx, fmt.Sprintf("Customer data not found for this id %s ", id), error.Code, nil)
 		return
 	}
 
 	if error.Type == "error_delete_02" {
-		helpers.APIResponse(ctx, fmt.Sprintf("Delete Supplier data for this id %v failed", id), error.Code, nil)
+		helpers.APIResponse(ctx, fmt.Sprintf("Delete Customer data for this id %v failed", id), error.Code, nil)
 		return
 	}
 
-	helpers.APIResponse(ctx, fmt.Sprintf("Delete Supplier data for this id %s success", id), http.StatusOK, res)
+	helpers.APIResponse(ctx, fmt.Sprintf("Delete Customer data for this id %s success", id), http.StatusOK, res)
 }
 
 /**
 * ======================================
-* Handler Update Supplier By ID Teritory
+* Handler Update Customer By ID Teritory
 *=======================================
  */
 
-func (h *handleSupplier) HandlerUpdate(ctx *gin.Context) {
-	var body schemes.SchemeSupplier
+func (h *handleCustomer) HandlerUpdate(ctx *gin.Context) {
+	var body schemes.SchemeCustomer
 	id := ctx.Param("id")
 	body.ID = id
 
@@ -164,35 +164,35 @@ func (h *handleSupplier) HandlerUpdate(ctx *gin.Context) {
 		return
 	}
 
-	errors, code := ValidatorSupplier(ctx, body, "update")
+	errors, code := ValidatorCustomer(ctx, body, "update")
 
 	if code > 0 {
 		helpers.ErrorResponse(ctx, errors)
 		return
 	}
 
-	_, error := h.supplier.EntityUpdate(&body)
+	_, error := h.customer.EntityUpdate(&body)
 
 	if error.Type == "error_update_01" {
-		helpers.APIResponse(ctx, fmt.Sprintf("Supplier data not found for this id %s ", id), error.Code, nil)
+		helpers.APIResponse(ctx, fmt.Sprintf("Customer data not found for this id %s ", id), error.Code, nil)
 		return
 	}
 
 	if error.Type == "error_update_02" {
-		helpers.APIResponse(ctx, fmt.Sprintf("Update Supplier data failed for this id %s", id), error.Code, nil)
+		helpers.APIResponse(ctx, fmt.Sprintf("Update Customer data failed for this id %s", id), error.Code, nil)
 		return
 	}
 
-	helpers.APIResponse(ctx, fmt.Sprintf("Update Supplier data success for this id %s", id), http.StatusCreated, nil)
+	helpers.APIResponse(ctx, fmt.Sprintf("Update Customer data success for this id %s", id), http.StatusCreated, nil)
 }
 
 /**
 * ======================================
-*  All Validator User Input For Supplier
+*  All Validator User Input For Customer
 *=======================================
  */
 
-func ValidatorSupplier(ctx *gin.Context, input schemes.SchemeSupplier, Type string) (interface{}, int) {
+func ValidatorCustomer(ctx *gin.Context, input schemes.SchemeCustomer, Type string) (interface{}, int) {
 	var schema gpc.ErrorConfig
 
 	if Type == "create" {

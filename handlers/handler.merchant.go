@@ -8,17 +8,17 @@ import (
 	"github.com/gin-gonic/gin"
 	gpc "github.com/restuwahyu13/go-playground-converter"
 
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/helpers"
 	"github.com/restuwahyu13/golang-pos/pkg"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type handlerMerchant struct {
-	merchant entitys.EntityMerchant
+	merchant entities.EntityMerchant
 }
 
-func NewHandlerMerchant(merchant entitys.EntityMerchant) *handlerMerchant {
+func NewHandlerMerchant(merchant entities.EntityMerchant) *handlerMerchant {
 	return &handlerMerchant{merchant: merchant}
 }
 
@@ -39,7 +39,7 @@ func (h *handlerMerchant) HandlerPing(ctx *gin.Context) {
  */
 
 func (h *handlerMerchant) HandlerCreate(ctx *gin.Context) {
-	var body schemas.SchemaMerchant
+	var body schemes.SchemeMerchant
 	file, _ := ctx.FormFile("logo")
 	body.Logo = file.Filename
 	body.Name = ctx.PostForm("name")
@@ -106,7 +106,7 @@ func (h *handlerMerchant) HandlerResults(ctx *gin.Context) {
  */
 
 func (h *handlerMerchant) HandlerResult(ctx *gin.Context) {
-	var body schemas.SchemaMerchant
+	var body schemes.SchemeMerchant
 	id := ctx.Param("id")
 	body.ID = id
 
@@ -136,7 +136,7 @@ func (h *handlerMerchant) HandlerResult(ctx *gin.Context) {
 func (h *handlerMerchant) HandlerDelete(ctx *gin.Context) {
 	id := ctx.Param("id")
 
-	var body schemas.SchemaMerchant
+	var body schemes.SchemeMerchant
 	body.ID = id
 
 	errors, code := ValidatorMerchant(ctx, body, "delete")
@@ -168,7 +168,7 @@ func (h *handlerMerchant) HandlerDelete(ctx *gin.Context) {
  */
 
 func (h *handlerMerchant) HandlerUpdate(ctx *gin.Context) {
-	var body schemas.SchemaMerchant
+	var body schemes.SchemeMerchant
 	id := ctx.Param("id")
 	file, _ := ctx.FormFile("logo")
 	body.ID = id
@@ -214,7 +214,7 @@ func (h *handlerMerchant) HandlerUpdate(ctx *gin.Context) {
 *=======================================
  */
 
-func ValidatorMerchant(ctx *gin.Context, input schemas.SchemaMerchant, Type string) (interface{}, int) {
+func ValidatorMerchant(ctx *gin.Context, input schemes.SchemeMerchant, Type string) (interface{}, int) {
 	var schema gpc.ErrorConfig
 
 	if Type == "create" {

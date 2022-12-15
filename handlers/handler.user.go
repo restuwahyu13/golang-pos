@@ -7,17 +7,17 @@ import (
 	"github.com/gin-gonic/gin"
 	gpc "github.com/restuwahyu13/go-playground-converter"
 
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/helpers"
 	"github.com/restuwahyu13/golang-pos/pkg"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type handlerUser struct {
-	user entitys.EntityUser
+	user entities.EntityUser
 }
 
-func NewHandlerUser(user entitys.EntityUser) *handlerUser {
+func NewHandlerUser(user entities.EntityUser) *handlerUser {
 	return &handlerUser{user: user}
 }
 
@@ -38,7 +38,7 @@ func (h *handlerUser) HandlerPing(ctx *gin.Context) {
  */
 
 func (h *handlerUser) HandlerRegister(ctx *gin.Context) {
-	var body schemas.SchemaUser
+	var body schemes.SchemeUser
 	err := ctx.ShouldBindJSON(&body)
 
 	if err != nil {
@@ -75,7 +75,7 @@ func (h *handlerUser) HandlerRegister(ctx *gin.Context) {
  */
 
 func (h *handlerUser) HandlerLogin(ctx *gin.Context) {
-	var body schemas.SchemaUser
+	var body schemes.SchemeUser
 	err := ctx.ShouldBindJSON(&body)
 
 	if err != nil {
@@ -102,10 +102,10 @@ func (h *handlerUser) HandlerLogin(ctx *gin.Context) {
 		return
 	}
 
-	accessToken, errorJwt := pkg.Sign(&schemas.JWtMetaRequest{
+	accessToken, errorJwt := pkg.Sign(&schemes.JWtMetaRequest{
 		Data:      gin.H{"id": res.ID, "email": res.Email, "role": res.Role},
 		SecretKey: pkg.GodotEnv("JWT_SECRET_KEY"),
-		Options:   schemas.JwtMetaOptions{Audience: "majoo", ExpiredAt: 1},
+		Options:   schemes.JwtMetaOptions{Audience: "majoo", ExpiredAt: 1},
 	})
 
 	expiredAt := time.Now().Add(time.Duration(time.Minute) * (24 * 60) * 1).Local()
@@ -124,7 +124,7 @@ func (h *handlerUser) HandlerLogin(ctx *gin.Context) {
 *=======================================
  */
 
-func ValidatorUser(ctx *gin.Context, input schemas.SchemaUser, Type string) (interface{}, int) {
+func ValidatorUser(ctx *gin.Context, input schemes.SchemeUser, Type string) (interface{}, int) {
 	var schema gpc.ErrorConfig
 
 	if Type == "register" {

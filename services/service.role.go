@@ -1,16 +1,16 @@
 package services
 
 import (
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/models"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type serviceRole struct {
-	role entitys.EntityRole
+	role entities.EntityRole
 }
 
-func NewServiceRole(role entitys.EntityRole) *serviceRole {
+func NewServiceRole(role entities.EntityRole) *serviceRole {
 	return &serviceRole{role: role}
 }
 
@@ -20,8 +20,8 @@ func NewServiceRole(role entitys.EntityRole) *serviceRole {
 *===========================================
  */
 
-func (s *serviceRole) EntityCreate(input *schemas.SchemaRole) (*models.ModelRole, schemas.SchemaDatabaseError) {
-	var role schemas.SchemaRole
+func (s *serviceRole) EntityCreate(input *schemes.SchemeRole) (*models.ModelRole, schemes.SchemeDatabaseError) {
+	var role schemes.SchemeRole
 	role.RoleName = input.RoleName
 	role.RoleAccess = input.RoleAccess
 
@@ -35,7 +35,7 @@ func (s *serviceRole) EntityCreate(input *schemas.SchemaRole) (*models.ModelRole
 *===========================================
  */
 
-func (s *serviceRole) EntityResults() (*[]models.ModelRole, schemas.SchemaDatabaseError) {
+func (s *serviceRole) EntityResults() (*[]models.ModelRole, schemes.SchemeDatabaseError) {
 	res, err := s.role.EntityResults()
 	return res, err
 }
@@ -46,8 +46,8 @@ func (s *serviceRole) EntityResults() (*[]models.ModelRole, schemas.SchemaDataba
 *===========================================
  */
 
-func (s *serviceRole) EntityResult(input *schemas.SchemaRole) (*models.ModelRole, schemas.SchemaDatabaseError) {
-	var role schemas.SchemaRole
+func (s *serviceRole) EntityResult(input *schemes.SchemeRole) (*models.ModelRole, schemes.SchemeDatabaseError) {
+	var role schemes.SchemeRole
 	role.ID = input.ID
 
 	res, err := s.role.EntityResult(&role)
@@ -60,8 +60,8 @@ func (s *serviceRole) EntityResult(input *schemas.SchemaRole) (*models.ModelRole
 *===========================================
  */
 
-func (s *serviceRole) EntityDelete(input *schemas.SchemaRole) (*models.ModelRole, schemas.SchemaDatabaseError) {
-	var role schemas.SchemaRole
+func (s *serviceRole) EntityDelete(input *schemes.SchemeRole) (*models.ModelRole, schemes.SchemeDatabaseError) {
+	var role schemes.SchemeRole
 	role.ID = input.ID
 
 	res, err := s.role.EntityDelete(&role)
@@ -74,8 +74,8 @@ func (s *serviceRole) EntityDelete(input *schemas.SchemaRole) (*models.ModelRole
 *===========================================
  */
 
-func (s *serviceRole) EntityUpdate(input *schemas.SchemaRole) (*models.ModelRole, schemas.SchemaDatabaseError) {
-	var role schemas.SchemaRole
+func (s *serviceRole) EntityUpdate(input *schemes.SchemeRole) (*models.ModelRole, schemes.SchemeDatabaseError) {
+	var role schemes.SchemeRole
 	role.RoleName = input.RoleName
 	role.RoleAccess = input.RoleAccess
 

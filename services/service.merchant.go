@@ -1,16 +1,16 @@
 package services
 
 import (
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/models"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type serviceMerchant struct {
-	merchant entitys.EntityMerchant
+	merchant entities.EntityMerchant
 }
 
-func NewServiceMerchant(merchant entitys.EntityMerchant) *serviceMerchant {
+func NewServiceMerchant(merchant entities.EntityMerchant) *serviceMerchant {
 	return &serviceMerchant{merchant: merchant}
 }
 
@@ -20,8 +20,8 @@ func NewServiceMerchant(merchant entitys.EntityMerchant) *serviceMerchant {
 *===========================================
  */
 
-func (s *serviceMerchant) EntityCreate(input *schemas.SchemaMerchant) (*models.ModelMerchant, schemas.SchemaDatabaseError) {
-	var merchant schemas.SchemaMerchant
+func (s *serviceMerchant) EntityCreate(input *schemes.SchemeMerchant) (*models.ModelMerchant, schemes.SchemeDatabaseError) {
+	var merchant schemes.SchemeMerchant
 	merchant.Name = input.Name
 	merchant.Phone = input.Phone
 	merchant.Address = input.Address
@@ -38,7 +38,7 @@ func (s *serviceMerchant) EntityCreate(input *schemas.SchemaMerchant) (*models.M
 *===========================================
  */
 
-func (s *serviceMerchant) EntityResults() (*[]models.ModelMerchant, schemas.SchemaDatabaseError) {
+func (s *serviceMerchant) EntityResults() (*[]models.ModelMerchant, schemes.SchemeDatabaseError) {
 	res, err := s.merchant.EntityResults()
 	return res, err
 }
@@ -49,8 +49,8 @@ func (s *serviceMerchant) EntityResults() (*[]models.ModelMerchant, schemas.Sche
 *===========================================
  */
 
-func (s *serviceMerchant) EntityResult(input *schemas.SchemaMerchant) (*models.ModelMerchant, schemas.SchemaDatabaseError) {
-	var merchant schemas.SchemaMerchant
+func (s *serviceMerchant) EntityResult(input *schemes.SchemeMerchant) (*models.ModelMerchant, schemes.SchemeDatabaseError) {
+	var merchant schemes.SchemeMerchant
 	merchant.ID = input.ID
 
 	res, err := s.merchant.EntityResult(&merchant)
@@ -63,8 +63,8 @@ func (s *serviceMerchant) EntityResult(input *schemas.SchemaMerchant) (*models.M
 *===========================================
  */
 
-func (s *serviceMerchant) EntityDelete(input *schemas.SchemaMerchant) (*models.ModelMerchant, schemas.SchemaDatabaseError) {
-	var merchant schemas.SchemaMerchant
+func (s *serviceMerchant) EntityDelete(input *schemes.SchemeMerchant) (*models.ModelMerchant, schemes.SchemeDatabaseError) {
+	var merchant schemes.SchemeMerchant
 	merchant.ID = input.ID
 
 	res, err := s.merchant.EntityDelete(&merchant)
@@ -77,8 +77,8 @@ func (s *serviceMerchant) EntityDelete(input *schemas.SchemaMerchant) (*models.M
 *===========================================
  */
 
-func (s *serviceMerchant) EntityUpdate(input *schemas.SchemaMerchant) (*models.ModelMerchant, schemas.SchemaDatabaseError) {
-	var merchant schemas.SchemaMerchant
+func (s *serviceMerchant) EntityUpdate(input *schemes.SchemeMerchant) (*models.ModelMerchant, schemes.SchemeDatabaseError) {
+	var merchant schemes.SchemeMerchant
 	merchant.Name = input.Name
 	merchant.Phone = input.Phone
 	merchant.Address = input.Address

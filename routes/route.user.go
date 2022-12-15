@@ -5,12 +5,12 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/restuwahyu13/golang-pos/handlers"
-	"github.com/restuwahyu13/golang-pos/repositorys"
+	"github.com/restuwahyu13/golang-pos/repositories"
 	"github.com/restuwahyu13/golang-pos/services"
 )
 
 func NewRouteUser(db *gorm.DB, router *gin.Engine) {
-	repositoryUser := repositorys.NewRepositoryUser(db)
+	repositoryUser := repositories.NewRepositoryUser(db)
 	serviceUser := services.NewServiceUser(repositoryUser)
 	handlerUser := handlers.NewHandlerUser(serviceUser)
 

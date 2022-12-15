@@ -6,10 +6,10 @@ import (
 	"github.com/golang-jwt/jwt"
 	"github.com/sirupsen/logrus"
 
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
-func Sign(configs *schemas.JWtMetaRequest) (string, error) {
+func Sign(configs *schemes.JWtMetaRequest) (string, error) {
 
 	expiredAt := time.Now().Add(time.Duration(time.Minute) * configs.Options.ExpiredAt).Unix()
 
