@@ -1,16 +1,16 @@
 package services
 
 import (
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/models"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type serviceCustomer struct {
-	customer entitys.EntityCustomer
+	customer entities.EntityCustomer
 }
 
-func NewServiceCustomer(customer entitys.EntityCustomer) *serviceCustomer {
+func NewServiceCustomer(customer entities.EntityCustomer) *serviceCustomer {
 	return &serviceCustomer{customer: customer}
 }
 
@@ -20,8 +20,8 @@ func NewServiceCustomer(customer entitys.EntityCustomer) *serviceCustomer {
 *===========================================
  */
 
-func (s *serviceCustomer) EntityCreate(input *schemas.SchemaCustomer) (*models.ModelCustomer, schemas.SchemaDatabaseError) {
-	var customer schemas.SchemaCustomer
+func (s *serviceCustomer) EntityCreate(input *schemes.SchemeCustomer) (*models.ModelCustomer, schemes.SchemeDatabaseError) {
+	var customer schemes.SchemeCustomer
 	customer.Name = input.Name
 	customer.Phone = input.Phone
 	customer.Address = input.Address
@@ -36,7 +36,7 @@ func (s *serviceCustomer) EntityCreate(input *schemas.SchemaCustomer) (*models.M
 *===========================================
  */
 
-func (s *serviceCustomer) EntityResults() (*[]models.ModelCustomer, schemas.SchemaDatabaseError) {
+func (s *serviceCustomer) EntityResults() (*[]models.ModelCustomer, schemes.SchemeDatabaseError) {
 	res, err := s.customer.EntityResults()
 	return res, err
 }
@@ -47,8 +47,8 @@ func (s *serviceCustomer) EntityResults() (*[]models.ModelCustomer, schemas.Sche
 *===========================================
  */
 
-func (s *serviceCustomer) EntityResult(input *schemas.SchemaCustomer) (*models.ModelCustomer, schemas.SchemaDatabaseError) {
-	var customer schemas.SchemaCustomer
+func (s *serviceCustomer) EntityResult(input *schemes.SchemeCustomer) (*models.ModelCustomer, schemes.SchemeDatabaseError) {
+	var customer schemes.SchemeCustomer
 	customer.ID = input.ID
 
 	res, err := s.customer.EntityResult(&customer)
@@ -61,8 +61,8 @@ func (s *serviceCustomer) EntityResult(input *schemas.SchemaCustomer) (*models.M
 *===========================================
  */
 
-func (s *serviceCustomer) EntityDelete(input *schemas.SchemaCustomer) (*models.ModelCustomer, schemas.SchemaDatabaseError) {
-	var customer schemas.SchemaCustomer
+func (s *serviceCustomer) EntityDelete(input *schemes.SchemeCustomer) (*models.ModelCustomer, schemes.SchemeDatabaseError) {
+	var customer schemes.SchemeCustomer
 	customer.ID = input.ID
 
 	res, err := s.customer.EntityDelete(&customer)
@@ -75,8 +75,8 @@ func (s *serviceCustomer) EntityDelete(input *schemas.SchemaCustomer) (*models.M
 *===========================================
  */
 
-func (s *serviceCustomer) EntityUpdate(input *schemas.SchemaCustomer) (*models.ModelCustomer, schemas.SchemaDatabaseError) {
-	var customer schemas.SchemaCustomer
+func (s *serviceCustomer) EntityUpdate(input *schemes.SchemeCustomer) (*models.ModelCustomer, schemes.SchemeDatabaseError) {
+	var customer schemes.SchemeCustomer
 	customer.Name = input.Name
 	customer.Phone = input.Phone
 	customer.Address = input.Address

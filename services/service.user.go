@@ -1,21 +1,21 @@
 package services
 
 import (
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/models"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type serviceUser struct {
-	user entitys.EntityUser
+	user entities.EntityUser
 }
 
-func NewServiceUser(user entitys.EntityUser) *serviceUser {
+func NewServiceUser(user entities.EntityUser) *serviceUser {
 	return &serviceUser{user: user}
 }
 
-func (s *serviceUser) EntityRegister(input *schemas.SchemaUser) (*models.ModelUser, schemas.SchemaDatabaseError) {
-	var schema schemas.SchemaUser
+func (s *serviceUser) EntityRegister(input *schemes.SchemeUser) (*models.ModelUser, schemes.SchemeDatabaseError) {
+	var schema schemes.SchemeUser
 	schema.FirstName = input.FirstName
 	schema.LastName = input.LastName
 	schema.Email = input.Email
@@ -26,8 +26,8 @@ func (s *serviceUser) EntityRegister(input *schemas.SchemaUser) (*models.ModelUs
 	return res, err
 }
 
-func (s *serviceUser) EntityLogin(input *schemas.SchemaUser) (*models.ModelUser, schemas.SchemaDatabaseError) {
-	var schema schemas.SchemaUser
+func (s *serviceUser) EntityLogin(input *schemes.SchemeUser) (*models.ModelUser, schemes.SchemeDatabaseError) {
+	var schema schemes.SchemeUser
 	schema.Email = input.Email
 	schema.Password = input.Password
 

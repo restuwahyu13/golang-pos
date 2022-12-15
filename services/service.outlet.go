@@ -1,16 +1,16 @@
 package services
 
 import (
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/models"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type serviceOutlite struct {
-	outlet entitys.EntityOutlet
+	outlet entities.EntityOutlet
 }
 
-func NewServiceOutlet(outlet entitys.EntityOutlet) *serviceOutlite {
+func NewServiceOutlet(outlet entities.EntityOutlet) *serviceOutlite {
 	return &serviceOutlite{outlet: outlet}
 }
 
@@ -20,8 +20,8 @@ func NewServiceOutlet(outlet entitys.EntityOutlet) *serviceOutlite {
 *===========================================
  */
 
-func (s *serviceOutlite) EntityCreate(input *schemas.SchemaOutlet) (*models.ModelOutlet, schemas.SchemaDatabaseError) {
-	var outlet schemas.SchemaOutlet
+func (s *serviceOutlite) EntityCreate(input *schemes.SchemeOutlet) (*models.ModelOutlet, schemes.SchemeDatabaseError) {
+	var outlet schemes.SchemeOutlet
 	outlet.Name = input.Name
 	outlet.Phone = input.Phone
 	outlet.Address = input.Address
@@ -37,7 +37,7 @@ func (s *serviceOutlite) EntityCreate(input *schemas.SchemaOutlet) (*models.Mode
 *===========================================
  */
 
-func (s *serviceOutlite) EntityResults() (*[]models.ModelOutlet, schemas.SchemaDatabaseError) {
+func (s *serviceOutlite) EntityResults() (*[]models.ModelOutlet, schemes.SchemeDatabaseError) {
 	res, err := s.outlet.EntityResults()
 	return res, err
 }
@@ -48,8 +48,8 @@ func (s *serviceOutlite) EntityResults() (*[]models.ModelOutlet, schemas.SchemaD
 *===========================================
  */
 
-func (s *serviceOutlite) EntityResult(input *schemas.SchemaOutlet) (*models.ModelOutlet, schemas.SchemaDatabaseError) {
-	var outlet schemas.SchemaOutlet
+func (s *serviceOutlite) EntityResult(input *schemes.SchemeOutlet) (*models.ModelOutlet, schemes.SchemeDatabaseError) {
+	var outlet schemes.SchemeOutlet
 	outlet.ID = input.ID
 
 	res, err := s.outlet.EntityResult(&outlet)
@@ -62,8 +62,8 @@ func (s *serviceOutlite) EntityResult(input *schemas.SchemaOutlet) (*models.Mode
 *===========================================
  */
 
-func (s *serviceOutlite) EntityDelete(input *schemas.SchemaOutlet) (*models.ModelOutlet, schemas.SchemaDatabaseError) {
-	var outlet schemas.SchemaOutlet
+func (s *serviceOutlite) EntityDelete(input *schemes.SchemeOutlet) (*models.ModelOutlet, schemes.SchemeDatabaseError) {
+	var outlet schemes.SchemeOutlet
 	outlet.ID = input.ID
 
 	res, err := s.outlet.EntityDelete(&outlet)
@@ -76,8 +76,8 @@ func (s *serviceOutlite) EntityDelete(input *schemas.SchemaOutlet) (*models.Mode
 *===========================================
  */
 
-func (s *serviceOutlite) EntityUpdate(input *schemas.SchemaOutlet) (*models.ModelOutlet, schemas.SchemaDatabaseError) {
-	var outlet schemas.SchemaOutlet
+func (s *serviceOutlite) EntityUpdate(input *schemes.SchemeOutlet) (*models.ModelOutlet, schemes.SchemeDatabaseError) {
+	var outlet schemes.SchemeOutlet
 	outlet.Name = input.Name
 	outlet.Phone = input.Phone
 	outlet.Address = input.Address
