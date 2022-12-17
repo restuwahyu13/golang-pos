@@ -6,12 +6,12 @@ import (
 
 	"github.com/restuwahyu13/golang-pos/handlers"
 	"github.com/restuwahyu13/golang-pos/middlewares"
-	"github.com/restuwahyu13/golang-pos/repositorys"
+	"github.com/restuwahyu13/golang-pos/repositories"
 	"github.com/restuwahyu13/golang-pos/services"
 )
 
 func NewRouteOutlet(db *gorm.DB, router *gin.Engine) {
-	repository := repositorys.NewRepositoryOutlet(db)
+	repository := repositories.NewRepositoryOutlet(db)
 	service := services.NewServiceOutlet(repository)
 	handler := handlers.NewHandlerOutlet(service)
 

@@ -1,16 +1,16 @@
 package services
 
 import (
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/models"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type serviceProduct struct {
-	product entitys.EntityProduct
+	product entities.EntityProduct
 }
 
-func NewServiceProduct(product entitys.EntityProduct) *serviceProduct {
+func NewServiceProduct(product entities.EntityProduct) *serviceProduct {
 	return &serviceProduct{product: product}
 }
 
@@ -20,8 +20,8 @@ func NewServiceProduct(product entitys.EntityProduct) *serviceProduct {
 *===========================================
  */
 
-func (s *serviceProduct) EntityCreate(input *schemas.SchemaProduct) (*models.ModelProduct, schemas.SchemaDatabaseError) {
-	var product schemas.SchemaProduct
+func (s *serviceProduct) EntityCreate(input *schemes.SchemeProduct) (*models.ModelProduct, schemes.SchemeDatabaseError) {
+	var product schemes.SchemeProduct
 	product.Name = input.Name
 	product.Image = input.Image
 	product.SKU = input.SKU
@@ -39,7 +39,7 @@ func (s *serviceProduct) EntityCreate(input *schemas.SchemaProduct) (*models.Mod
 *===========================================
  */
 
-func (s *serviceProduct) EntityResults() (*[]models.ModelProduct, schemas.SchemaDatabaseError) {
+func (s *serviceProduct) EntityResults() (*[]models.ModelProduct, schemes.SchemeDatabaseError) {
 	res, err := s.product.EntityResults()
 	return res, err
 }
@@ -50,8 +50,8 @@ func (s *serviceProduct) EntityResults() (*[]models.ModelProduct, schemas.Schema
 *===========================================
  */
 
-func (s *serviceProduct) EntityResult(input *schemas.SchemaProduct) (*models.ModelProduct, schemas.SchemaDatabaseError) {
-	var product schemas.SchemaProduct
+func (s *serviceProduct) EntityResult(input *schemes.SchemeProduct) (*models.ModelProduct, schemes.SchemeDatabaseError) {
+	var product schemes.SchemeProduct
 	product.ID = input.ID
 
 	res, err := s.product.EntityResult(&product)
@@ -64,8 +64,8 @@ func (s *serviceProduct) EntityResult(input *schemas.SchemaProduct) (*models.Mod
 *===========================================
  */
 
-func (s *serviceProduct) EntityDelete(input *schemas.SchemaProduct) (*models.ModelProduct, schemas.SchemaDatabaseError) {
-	var product schemas.SchemaProduct
+func (s *serviceProduct) EntityDelete(input *schemes.SchemeProduct) (*models.ModelProduct, schemes.SchemeDatabaseError) {
+	var product schemes.SchemeProduct
 	product.ID = input.ID
 
 	res, err := s.product.EntityDelete(&product)
@@ -78,8 +78,8 @@ func (s *serviceProduct) EntityDelete(input *schemas.SchemaProduct) (*models.Mod
 *===========================================
  */
 
-func (s *serviceProduct) EntityUpdate(input *schemas.SchemaProduct) (*models.ModelProduct, schemas.SchemaDatabaseError) {
-	var product schemas.SchemaProduct
+func (s *serviceProduct) EntityUpdate(input *schemes.SchemeProduct) (*models.ModelProduct, schemes.SchemeDatabaseError) {
+	var product schemes.SchemeProduct
 	product.Name = input.Name
 	product.Image = input.Image
 	product.SKU = input.SKU
@@ -97,8 +97,8 @@ func (s *serviceProduct) EntityUpdate(input *schemas.SchemaProduct) (*models.Mod
 *================================================
  */
 
-func (s *serviceProduct) EntityProductByOutlet(input *schemas.SchemaProduct) (*[]models.ModelProduct, schemas.SchemaDatabaseError) {
-	var product schemas.SchemaProduct
+func (s *serviceProduct) EntityProductByOutlet(input *schemes.SchemeProduct) (*[]models.ModelProduct, schemes.SchemeDatabaseError) {
+	var product schemes.SchemeProduct
 	product.ID = input.ID
 
 	res, err := s.product.EntityProductByOutlet(&product)

@@ -10,16 +10,16 @@ import (
 	"github.com/restuwahyu13/golang-pos/services"
 )
 
-func NewRouteSupplier(db *gorm.DB, router *gin.Engine) {
-	repository := repositories.NewRepositorySupplier(db)
-	service := services.NewServiceSupplier(repository)
-	handler := handlers.NewHandlerSupplier(service)
+func NewRouteCustomer(db *gorm.DB, router *gin.Engine) {
+	repository := repositories.NewRepositoryCustomer(db)
+	service := services.NewServiceCustomer(repository)
+	handler := handlers.NewHandlerCustomer(service)
 
-	route := router.Group("/api/v1/supplier")
+	route := router.Group("/api/v1/customer")
 	route.Use(middlewares.AuthToken())
-	route.Use(middlewares.AuthRole(map[string]bool{"admin": true, "supplier": true}))
+	route.Use(middlewares.AuthRole(map[string]bool{"admin": true, "outlet": true}))
 
-	router.GET("/api/v1/supplier/ping", handler.HandlerPing)
+	router.GET("/api/v1/customer/ping", handler.HandlerPing)
 	route.POST("/create", handler.HandlerCreate)
 	route.GET("/results", handler.HandlerResults)
 	route.GET("/result/:id", handler.HandlerResult)

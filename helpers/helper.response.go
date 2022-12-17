@@ -5,12 +5,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 func APIResponse(ctx *gin.Context, Message string, StatusCode int, Data interface{}) {
 
-	jsonResponse := schemas.SchemaResponses{
+	jsonResponse := schemes.SchemeResponses{
 		StatusCode: StatusCode,
 		Message:    Message,
 		Data:       Data,
@@ -24,7 +24,7 @@ func APIResponse(ctx *gin.Context, Message string, StatusCode int, Data interfac
 }
 
 func ErrorResponse(ctx *gin.Context, Error interface{}) {
-	err := schemas.SchemaErrorResponse{
+	err := schemes.SchemeErrorResponse{
 		StatusCode: http.StatusBadRequest,
 		Error:      Error,
 	}

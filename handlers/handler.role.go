@@ -7,17 +7,17 @@ import (
 	"github.com/gin-gonic/gin"
 	gpc "github.com/restuwahyu13/go-playground-converter"
 
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/helpers"
 	"github.com/restuwahyu13/golang-pos/pkg"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type handleRole struct {
-	role entitys.EntityRole
+	role entities.EntityRole
 }
 
-func NewHandlerRole(role entitys.EntityRole) *handleRole {
+func NewHandlerRole(role entities.EntityRole) *handleRole {
 	return &handleRole{role: role}
 }
 
@@ -38,7 +38,7 @@ func (h *handleRole) HandlerPing(ctx *gin.Context) {
  */
 
 func (h *handleRole) HandlerCreate(ctx *gin.Context) {
-	var body schemas.SchemaRole
+	var body schemes.SchemeRole
 	err := ctx.ShouldBindJSON(&body)
 
 	if err != nil {
@@ -92,7 +92,7 @@ func (h *handleRole) HandlerResults(ctx *gin.Context) {
  */
 
 func (h *handleRole) HandlerResult(ctx *gin.Context) {
-	var body schemas.SchemaRole
+	var body schemes.SchemeRole
 	id := ctx.Param("id")
 	body.ID = id
 
@@ -120,7 +120,7 @@ func (h *handleRole) HandlerResult(ctx *gin.Context) {
  */
 
 func (h *handleRole) HandlerDelete(ctx *gin.Context) {
-	var body schemas.SchemaRole
+	var body schemes.SchemeRole
 	id := ctx.Param("id")
 	body.ID = id
 
@@ -153,7 +153,7 @@ func (h *handleRole) HandlerDelete(ctx *gin.Context) {
  */
 
 func (h *handleRole) HandlerUpdate(ctx *gin.Context) {
-	var body schemas.SchemaRole
+	var body schemes.SchemeRole
 	id := ctx.Param("id")
 	body.ID = id
 
@@ -192,7 +192,7 @@ func (h *handleRole) HandlerUpdate(ctx *gin.Context) {
 *=======================================
  */
 
-func Role(ctx *gin.Context, input schemas.SchemaRole, Type string) (interface{}, int) {
+func Role(ctx *gin.Context, input schemes.SchemeRole, Type string) (interface{}, int) {
 	var schema gpc.ErrorConfig
 
 	if Type == "create" {

@@ -1,16 +1,16 @@
 package services
 
 import (
-	"github.com/restuwahyu13/golang-pos/entitys"
+	"github.com/restuwahyu13/golang-pos/entities"
 	"github.com/restuwahyu13/golang-pos/models"
-	"github.com/restuwahyu13/golang-pos/schemas"
+	"github.com/restuwahyu13/golang-pos/schemes"
 )
 
 type serviceSupplier struct {
-	supplier entitys.EntitySupplier
+	supplier entities.EntitySupplier
 }
 
-func NewServiceSupplier(supplier entitys.EntitySupplier) *serviceSupplier {
+func NewServiceSupplier(supplier entities.EntitySupplier) *serviceSupplier {
 	return &serviceSupplier{supplier: supplier}
 }
 
@@ -20,8 +20,8 @@ func NewServiceSupplier(supplier entitys.EntitySupplier) *serviceSupplier {
 *===========================================
  */
 
-func (s *serviceSupplier) EntityCreate(input *schemas.SchemaSupplier) (*models.ModelSupplier, schemas.SchemaDatabaseError) {
-	var supplier schemas.SchemaSupplier
+func (s *serviceSupplier) EntityCreate(input *schemes.SchemeSupplier) (*models.ModelSupplier, schemes.SchemeDatabaseError) {
+	var supplier schemes.SchemeSupplier
 	supplier.Name = input.Name
 	supplier.Phone = input.Phone
 	supplier.Address = input.Address
@@ -36,7 +36,7 @@ func (s *serviceSupplier) EntityCreate(input *schemas.SchemaSupplier) (*models.M
 *===========================================
  */
 
-func (s *serviceSupplier) EntityResults() (*[]models.ModelSupplier, schemas.SchemaDatabaseError) {
+func (s *serviceSupplier) EntityResults() (*[]models.ModelSupplier, schemes.SchemeDatabaseError) {
 	res, err := s.supplier.EntityResults()
 	return res, err
 }
@@ -47,8 +47,8 @@ func (s *serviceSupplier) EntityResults() (*[]models.ModelSupplier, schemas.Sche
 *===========================================
  */
 
-func (s *serviceSupplier) EntityResult(input *schemas.SchemaSupplier) (*models.ModelSupplier, schemas.SchemaDatabaseError) {
-	var supplier schemas.SchemaSupplier
+func (s *serviceSupplier) EntityResult(input *schemes.SchemeSupplier) (*models.ModelSupplier, schemes.SchemeDatabaseError) {
+	var supplier schemes.SchemeSupplier
 	supplier.ID = input.ID
 
 	res, err := s.supplier.EntityResult(&supplier)
@@ -61,8 +61,8 @@ func (s *serviceSupplier) EntityResult(input *schemas.SchemaSupplier) (*models.M
 *===========================================
  */
 
-func (s *serviceSupplier) EntityDelete(input *schemas.SchemaSupplier) (*models.ModelSupplier, schemas.SchemaDatabaseError) {
-	var supplier schemas.SchemaSupplier
+func (s *serviceSupplier) EntityDelete(input *schemes.SchemeSupplier) (*models.ModelSupplier, schemes.SchemeDatabaseError) {
+	var supplier schemes.SchemeSupplier
 	supplier.ID = input.ID
 
 	res, err := s.supplier.EntityDelete(&supplier)
@@ -75,8 +75,8 @@ func (s *serviceSupplier) EntityDelete(input *schemas.SchemaSupplier) (*models.M
 *===========================================
  */
 
-func (s *serviceSupplier) EntityUpdate(input *schemas.SchemaSupplier) (*models.ModelSupplier, schemas.SchemaDatabaseError) {
-	var supplier schemas.SchemaSupplier
+func (s *serviceSupplier) EntityUpdate(input *schemes.SchemeSupplier) (*models.ModelSupplier, schemes.SchemeDatabaseError) {
+	var supplier schemes.SchemeSupplier
 	supplier.Name = input.Name
 	supplier.Phone = input.Phone
 	supplier.Address = input.Address
